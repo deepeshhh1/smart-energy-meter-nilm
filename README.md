@@ -32,3 +32,25 @@ WiFi and Telegram credentials are intentionally replaced with placeholders (`YOU
 
 **Deepesh Chauhan** — B.Tech Electrical Engineering, RGGEC Kangra
 [LinkedIn](https://www.linkedin.com/in/deepeshhh1)
+
+
+## 📚 Required libraries
+
+Board support (once): **esp32 by Espressif Systems** — Arduino IDE → Boards Manager.
+
+| Library | Used for | Install (Library Manager search) |
+| --- | --- | --- |
+| EmonLib (OpenEnergyMonitor) | Voltage / current energy monitoring (NILM sampling) | `EmonLib` |
+| LiquidCrystal I2C (Frank de Brabander) | 16×2 LCD over I2C | `LiquidCrystal I2C` |
+
+Built into the ESP32 core, no install needed: `WiFi`, `WebServer`, `HTTPClient`, `ESPmDNS`, `Preferences`. Telegram alerts are sent with direct HTTPS calls to the Telegram Bot API — no Telegram library is required; put your bot token in the `TELEGRAM_TOKEN` placeholder in the sketch.
+
+## 🔌 Wiring — pin connections (ESP32)
+
+| ESP32 pin | Connects to | Notes |
+| --- | --- | --- |
+| GPIO34 | Voltage-sensor input | EmonLib voltage channel (calibration 234.26 in the sketch — calibrate to your sensor) |
+| GPIO35 | Current-sensor input | EmonLib current channel (CT + burden output) |
+| GPIO13 | Buzzer | Anomaly / alert buzzer |
+| GPIO21 (SDA) / GPIO22 (SCL) | 16×2 LCD (I2C) | LCD address `0x27` |
+| GND | Sensor ground | Common ground throughout |
